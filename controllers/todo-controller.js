@@ -5,10 +5,10 @@ const toDoService = require('../services/todo-service');
 class ToDoController {
 
     async addToDo(req, res) {
-        const todo = req.body.todo
+        const todo = req.body
         try {
-            const createdCategory = await toDoService.addToDo(todo)
-            return res.status(200).send(createdCategory)
+            const todo = await toDoService.addToDo(todo)
+            return res.status(200).send(todo)
         } catch (error) {
             return res.status(404).send({
                 status: 'error',
@@ -26,9 +26,28 @@ class ToDoController {
         }
     }
 
-    async allToDo(req, res) {
+    async allToDo(res) {
         try {
             const result = await toDoService.allToDo();
+            return res.status(200).json(result)
+        } catch (error) {
+            return res.status(400).json(error.message)
+        }
+    }
+
+    async updateToDo(req, res) {
+        const todo = req.body
+        try {
+            const result = await toDoService.updateToDo(todo);
+            return res.status(200).json(result)
+        } catch (error) {
+            return res.status(400).json(error.message)
+        }
+    }
+
+    async removeToDo(req, res) {
+        try {
+            const result = await toDoService.removeToDo(req.body.title);
             return res.status(200).json(result)
         } catch (error) {
             return res.status(400).json(error.message)

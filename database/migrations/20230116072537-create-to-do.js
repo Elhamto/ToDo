@@ -20,6 +20,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       category: {
+        allowNull: false,
         type: Sequelize.ENUM,
         values: ['Heigh importance', 'Medium importance', 'low importance']
       },
