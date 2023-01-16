@@ -11,7 +11,11 @@ app.use(express.json());
 route(app);
 
 app.get("/", (req, res) => {
-    return res.send("welcome to ToDo app")
+    return res.send(`welcome to ToDo app,
+        Routes: 
+            todo crud: localhost:3000/api/todo 
+            AND
+            todo list: localhost:3000/api/todo/list`)
 })
 
 app.listen(process.env.PORT || 3000, () => {
